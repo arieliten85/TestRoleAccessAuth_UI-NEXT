@@ -1,0 +1,13 @@
+.container {
+  background-color: rgb(81, 81, 110);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+}
+
+.buttonLogOut {
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
