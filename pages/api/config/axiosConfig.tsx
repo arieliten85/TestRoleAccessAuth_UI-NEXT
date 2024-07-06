@@ -1,9 +1,7 @@
 import { checkTokenExpiration, getTokenStorage } from "@/utils/tokenService";
 import axios from "axios";
 
-const LOCAL_HOST = process.env.NEXT_PUBLIC_LOCAL_HOST;
-const PORT = process.env.NEXT_PUBLIC_DB_PORT;
-const BASE_URL = `${LOCAL_HOST}:${PORT}`;
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL_DEV;
 
 const axiosInstance = axios.create({
   baseURL: BASE_URL,
