@@ -1,108 +1,142 @@
 .container {
+  margin-top: 20px;
+
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  gap: 20px;
-  justify-content: flex-start;
+  gap: 50px;
   align-items: center;
-
-  padding: 50px;
-}
-
-.containerUserInfo {
-  background-color: rgb(81, 81, 110);
-  padding: 20px;
-}
-
-.access {
-  background-color: rgb(81, 81, 110);
-  display: flex;
-  gap: 10px;
-  padding: 10px;
-  margin: 10px;
-}
-
-.buttonAccess {
-  padding: 10px;
-  cursor: pointer;
-}
-
-.main {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 7rem;
-  min-height: 100vh;
-}
-
-.description {
-  display: inherit;
   justify-content: center;
-  align-items: inherit;
-  font-size: 0.85rem;
-  max-width: var(--max-width);
+
+  padding: 10px;
+}
+
+.SpinnerContainer {
+  margin-top: 150px;
+}
+
+.formUser {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.formUser h2 {
+  font-size: 25px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.inputText {
   width: 100%;
-  z-index: 2;
-  font-family: var(--font-mono);
-}
-
-.description a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.description p {
-  position: relative;
-  margin: 0;
-  padding: 1rem;
-  background-color: rgba(var(--callout-rgb), 0.5);
-  border: 1px solid rgba(var(--callout-border-rgb), 0.3);
-  border-radius: var(--border-radius);
-
+  background-color: rgb(241, 232, 232);
+  border-radius: 5px;
+  text-align: start;
+  padding: 7px;
+  margin-top: 2px;
+  margin-bottom: 15px;
   font-size: 15px;
+  color: rgb(102, 104, 102);
 }
 
-.center {
+.dropdowns {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.dropdown {
+  padding: 10px;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: end;
+  gap: 15px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+.buttonsItems {
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: 10px;
+}
+
+.buttonGet,
+.buttonPost,
+.buttonPut,
+.buttonDelete {
+  border: none;
+  padding: 5px 35px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: rgb(241, 233, 233);
+}
+
+.buttonGet {
+  background-color: #37a6a6;
+}
+.buttonPost {
+  background-color: #a4a637;
+}
+
+.buttonPut {
+  background-color: #d87e4a;
+}
+
+.buttonDelete {
+  background-color: #e02765;
+}
+
+.buttonGet:hover {
+  background-color: #37a6a6b4;
+}
+.buttonPost:hover {
+  background-color: #a4a637ab;
+}
+
+.buttonPut:hover {
+  background-color: #d87e4aa4;
+}
+
+.buttonDelete:hover {
+  background-color: #9450a5ad;
+}
+
+.resposeContainer {
   position: relative;
-  padding: 4rem 0;
+  background-color: rgb(241, 232, 232);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  height: 150px;
+
+  padding: 10px;
+  border-radius: 5px;
+}
+.denied {
+  text-transform: uppercase;
+  color: rgb(226, 58, 58);
+  font-weight: 800;
+  font-size: 10px;
+}
+.denied p {
+  padding: 15px;
+  color: rgb(230, 221, 221) !important;
+  background-color: rgb(243, 133, 133);
+}
+.success {
+  color: green;
 }
 
-.center::before {
-  background: var(--secondary-glow);
-  border-radius: 50%;
-  width: 480px;
-  height: 360px;
-  margin-left: -400px;
-}
-
-.center::after {
-  background: var(--primary-glow);
-  width: 240px;
-  height: 180px;
-  z-index: -1;
-}
-
-.center::before,
-.center::after {
-  content: "";
-  left: 50%;
+.iconStatusResults {
   position: absolute;
-  filter: blur(45px);
-  transform: translateZ(0);
+  top: 5px;
+  right: 5px;
 }
-
-.logo {
-  position: relative;
-}
-
-.logo {
-  filter: invert(1) drop-shadow(0 0 0.3rem #ffffff70);
-}
-
-/* ------------ */

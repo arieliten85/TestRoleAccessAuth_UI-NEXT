@@ -16,6 +16,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "utils/tokenService.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "utils/tokenService.tsx"],
   "exclude": ["node_modules"]
 }

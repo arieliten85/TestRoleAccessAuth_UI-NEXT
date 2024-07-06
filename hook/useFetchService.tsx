@@ -2,15 +2,14 @@ import { useState } from "react";
 import axiosInstance from "../pages/api/config/axiosConfig";
 import axios, { AxiosError } from "axios";
 
-interface FetchResponse {
-  data: any;
-  message: string;
-  status: boolean;
+interface DataFetch {
+  data: "";
 }
 
 interface FetchService {
-  data: FetchResponse | null;
+  data: DataFetch | null;
   error: string | null;
+  loading: boolean;
   setError: (error: string | null) => void;
   fetchGet: () => Promise<void>;
   fetchPost: () => Promise<void>;
@@ -19,50 +18,77 @@ interface FetchService {
 }
 
 export const useFetchService = (): FetchService => {
-  const [data, setData] = useState<FetchResponse | null>(null);
-
+  const [loading, seloading] = useState<boolean>(false);
+  const [data, setData] = useState<DataFetch | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const fetchGet = async () => {
     try {
+      seloading(true);
       const response = await axiosInstance.get("/method/get");
-
-      setData(response.data);
-      setError(null);
+      setTimeout(() => {
+        setData(response.data);
+        seloading(false);
+        setError(null);
+      }, 150);
     } catch (err) {
-      handleFetchError(err);
+      setTimeout(() => {
+        handleFetchError(err);
+        seloading(false);
+      }, 150);
     } finally {
     }
   };
 
   const fetchPost = async () => {
+    seloading(true);
     try {
       const response = await axiosInstance.post("/method/post");
-      setData(response.data);
-      setError(null);
+      setTimeout(() => {
+        setData(response.data);
+        seloading(false);
+        setError(null);
+      }, 150);
     } catch (err) {
-      handleFetchError(err);
+      setTimeout(() => {
+        handleFetchError(err);
+        seloading(false);
+      }, 150);
     } finally {
     }
   };
   const fetchPut = async () => {
+    seloading(true);
     try {
       const response = await axiosInstance.put("/method/put");
-      setData(response.data);
-      setError(null);
+      setTimeout(() => {
+        setData(response.data);
+        seloading(false);
+        setError(null);
+      }, 200);
     } catch (err) {
-      handleFetchError(err);
+      setTimeout(() => {
+        handleFetchError(err);
+        seloading(false);
+      }, 150);
     } finally {
     }
   };
 
   const fetchDelete = async () => {
+    seloading(true);
     try {
       const response = await axiosInstance.delete("/method/delete");
-      setData(response.data);
-      setError(null);
+      setTimeout(() => {
+        setData(response.data);
+        seloading(false);
+        setError(null);
+      }, 150);
     } catch (err) {
-      handleFetchError(err);
+      setTimeout(() => {
+        handleFetchError(err);
+        seloading(false);
+      }, 150);
     } finally {
     }
   };
@@ -86,6 +112,7 @@ export const useFetchService = (): FetchService => {
   return {
     data,
     error,
+    loading,
     setError,
     fetchGet,
     fetchPost,

@@ -6,7 +6,9 @@ import Link from "next/link";
 import { validationSchemaLogin } from "@/validation/schemas";
 import { loginUser } from "./api/userAuth";
 import { useUserAuthContext } from "@/context/userAuthContext";
-import { setAuthToken } from "./api/tokenAuth";
+import { setAuthToken } from "@/utils/tokenService";
+import { useState } from "react";
+import { ClipLoader } from "react-spinners";
 
 interface FormValues {
   username: string;
@@ -26,28 +28,35 @@ const initialValues: FormValues = {
 };
 
 export default function Login() {
+  const [loading, seloading] = useState<boolean>(false);
   const { setToken } = useUserAuthContext();
   const router = useRouter();
 
   const handleLogin = async (
     values: FormValues,
-    { setSubmitting, setStatus, resetForm }: FormikHelpers<FormValues>
+    { setStatus, resetForm }: FormikHelpers<FormValues>
   ) => {
-    const response: LoginResponse = await loginUser({
-      username: values.username,
-      password: values.password,
-    });
+    seloading(true);
+    try {
+      const response: LoginResponse = await loginUser({
+        username: values.username,
+        password: values.password,
+      });
 
-    if (response) {
-      setStatus(response.message);
       if (response.status) {
         setToken(response.jwt);
-
         setAuthToken(response.jwt);
         router.push("/home");
-
         resetForm();
+      } else {
+        setTimeout(() => {
+          seloading(false);
+          setStatus(response.message);
+        }, 300);
       }
+    } catch (err) {
+      console.log(err);
+    } finally {
     }
   };
 
@@ -58,7 +67,7 @@ export default function Login() {
         validationSchema={validationSchemaLogin}
         onSubmit={handleLogin}
       >
-        {({ errors, touched, status }) => (
+        {({ status }) => (
           <Form className={styles.form}>
             <h2 className={styles.title}>Login</h2>
             <label htmlFor="username" className={styles.label}>
@@ -101,7 +110,7 @@ export default function Login() {
             </p>
 
             <button type="submit" className={styles.button}>
-              Login
+              {!loading ? "Login" : <Spinner />}
             </button>
 
             {status && (
@@ -118,6 +127,20 @@ export default function Login() {
           </Form>
         )}
       </Formik>
+    </div>
+  );
+}
+
+export function Spinner() {
+  return (
+    <div>
+      <ClipLoader
+        color={"#000000"}
+        size={20}
+        speedMultiplier={1}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
     </div>
   );
 }

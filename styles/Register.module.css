@@ -1,9 +1,12 @@
-/* styles/Home.module.css */
-
 .infoText {
   margin: 0 auto;
   padding: 10px;
   color: black;
+  font-size: 15px;
+}
+
+.infoText strong {
+  color: #f29f05;
 }
 
 .container {
@@ -12,7 +15,9 @@
   align-items: center;
   height: 100vh;
 }
-
+.SpinnerContainer {
+  margin-top: 200px;
+}
 .form {
   display: flex;
   flex-direction: column;
@@ -24,7 +29,7 @@
   background-color: #f9f9f9;
 }
 .title {
-  color: black;
+  color: #f29f05;
   margin: 0 auto;
   padding-bottom: 10px;
 }
@@ -48,7 +53,7 @@
   width: 100%;
   padding: 10px;
   margin-top: 10px;
-  background-color: rgb(81, 81, 110);
+  background-color: #f29f05;
   color: white;
   border: none;
   border-radius: 3px;
@@ -56,7 +61,7 @@
 }
 
 .button:hover {
-  background-color: rgb(71, 71, 97);
+  background-color: #c48512;
 }
 
 .error {

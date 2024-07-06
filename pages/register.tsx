@@ -1,10 +1,12 @@
-import { Formik, Form, Field, FormikHelpers, ErrorMessage } from "formik";
+import { Formik, Form, Field, FormikHelpers } from "formik";
 
 import styles from "../styles/Register.module.css";
 import { validationSchemaRegister } from "@/validation/schemas";
 import { registerUser } from "./api/userAuth";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { useState } from "react";
+import { ClipLoader } from "react-spinners";
 
 interface FormValues {
   username: string;
@@ -25,27 +27,34 @@ const initialValues: FormValues = {
 };
 
 export default function Register() {
+  const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
 
   const handleRegister = async (
     values: FormValues,
-    { setSubmitting, setStatus, resetForm }: FormikHelpers<FormValues>
+    { setStatus, resetForm }: FormikHelpers<FormValues>
   ) => {
-    const response: RegisterResponse = await registerUser({
-      username: values.username,
-      password: values.password,
-      roleRequest: {
-        roleListName: [values.role],
-      },
-    });
+    setLoading(true);
+    try {
+      const response: RegisterResponse = await registerUser({
+        username: values.username,
+        password: values.password,
+        roleRequest: {
+          roleListName: [values.role],
+        },
+      });
 
-    if (response) {
       if (response.status) {
-        router.push("/login");
         resetForm();
+        router.push("/login");
       } else {
-        setStatus(response.message);
+        setTimeout(() => {
+          setLoading(false);
+          setStatus(response.message);
+        }, 300);
       }
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -59,6 +68,7 @@ export default function Register() {
         {({ errors, touched, status }) => (
           <Form className={styles.form}>
             <h2 className={styles.title}>Register</h2>
+            {/* Username field */}
             <label htmlFor="username" className={styles.label}>
               Username
             </label>
@@ -72,7 +82,8 @@ export default function Register() {
             {errors.username && touched.username ? (
               <p className={styles.error}>{errors.username}</p>
             ) : null}
-            {/* ---- */}
+
+            {/* Password field */}
             <label htmlFor="password" className={styles.label}>
               Password
             </label>
@@ -87,8 +98,7 @@ export default function Register() {
               <p className={styles.error}>{errors.password}</p>
             ) : null}
 
-            {/* ---- */}
-
+            {/* Role select field */}
             <label htmlFor="role" className={styles.label}>
               Role
             </label>
@@ -102,17 +112,20 @@ export default function Register() {
               <p className={styles.error}>{errors.role}</p>
             ) : null}
 
+            {/* Link to login */}
             <p className={styles.infoText}>
               Are you already registered?{" "}
-              <Link href={"login"}>
+              <Link href="/login">
                 <strong> Login</strong>
               </Link>{" "}
             </p>
 
+            {/* Register button */}
             <button type="submit" className={styles.button}>
-              Register
+              {!loading ? "Register" : <Spinner />}
             </button>
 
+            {/* Display error message if any */}
             {status && (
               <div
                 style={{
@@ -127,6 +140,20 @@ export default function Register() {
           </Form>
         )}
       </Formik>
+    </div>
+  );
+}
+
+export function Spinner() {
+  return (
+    <div>
+      <ClipLoader
+        color={"#000000"}
+        size={20}
+        speedMultiplier={1}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
     </div>
   );
 }

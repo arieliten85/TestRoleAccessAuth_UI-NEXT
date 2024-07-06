@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container p {
+  max-width: 700px;
+  font-size: 20px;
+  padding: 10px;
+}
+
+.button {
+  width: 100px;
+  padding: 7px !important;
+  margin-top: 10px;
+  background-color: #f29f05;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.button:hover {
+  background-color: #c48512;
+}

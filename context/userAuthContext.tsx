@@ -1,4 +1,3 @@
-import axiosInstance from "@/pages/api/config/axiosConfig";
 import { getTokenStorage, getUserStorage } from "@/utils/tokenService";
 import { jwtDecode } from "jwt-decode";
 import React, {
@@ -23,7 +22,7 @@ interface UserAuthContextType {
   setToken: React.Dispatch<React.SetStateAction<string>>;
 }
 
-interface TokenDecodedResponse {
+export interface TokenDecodedResponse {
   iss: string;
   sub: string;
   authorities: string;
@@ -68,6 +67,7 @@ export const UserAuthProvider: React.FC<{ children: ReactNode }> = ({
   useEffect(() => {
     if (token !== "") {
       const tokenDecoded: TokenDecodedResponse = jwtDecode(token);
+
       if (tokenDecoded) {
         const role = tokenDecoded.authorities
           .split(",")

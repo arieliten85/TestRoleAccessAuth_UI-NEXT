@@ -1,0 +1,39 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: rgb(179, 153, 153) solid 1.5px;
+
+  padding: 10px;
+  padding-top: 20px !important;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 24px;
+  color: #ffffff;
+}
+
+.logoutButton {
+  background-color: #f29f05;
+  color: #ffffff;
+  border: none;
+  padding: 7px 25px;
+
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.2px;
+}
+
+.logoutButton:hover {
+  background-color: #d38c09;
+}
+
+@media (min-width: 768px) {
+  .header {
+    width: 50%;
+  }
+}
