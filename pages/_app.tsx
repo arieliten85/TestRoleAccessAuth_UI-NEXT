@@ -16,6 +16,7 @@ import {
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
+  //REDIRECTION
   // useEffect(() => {
   //   const token = getTokenStorage();
   //   if (token) {
