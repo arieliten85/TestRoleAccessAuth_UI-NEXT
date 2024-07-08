@@ -22,3 +22,9 @@ Para iniciar el proyecto, ejecuta el siguiente comando:
 ```bash
 npm run dev
 ```
+
+## Usuarios pre cargados de prueba
+
+username: santiago pass :1234
+username: anyi pass :1234
+username: daniel pass :1234
