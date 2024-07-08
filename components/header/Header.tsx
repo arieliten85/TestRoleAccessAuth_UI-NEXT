@@ -2,13 +2,18 @@ import React from "react";
 
 import styles from "../../styles/Header.module.css";
 import { useRouter } from "next/router";
-import { removeTokenStorage, removeUserStorage } from "@/utils/tokenService";
+import {
+  removeTimeExpiredTokenStorage,
+  removeTokenStorage,
+  removeUserStorage,
+} from "@/utils/tokenService";
 
 export default function Header() {
   const router = useRouter();
 
   const handleLogout = () => {
     removeTokenStorage();
+    removeTimeExpiredTokenStorage();
     removeUserStorage();
     router.push("/");
   };

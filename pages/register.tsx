@@ -1,5 +1,5 @@
 import { Formik, Form, Field, FormikHelpers } from "formik";
-import styles from "../styles/Register.module.css";
+import styles from "../styles/FormSession.module.css";
 import { validationSchemaRegister } from "@/validation/schemas";
 import { registerUser } from "./api/userAuth";
 import { useRouter } from "next/router";
@@ -36,7 +36,7 @@ export default function Register() {
     setLoading(true);
     try {
       const response: RegisterResponse = await registerUser({
-        username: values.username,
+        username: values.username.toLocaleLowerCase(),
         password: values.password,
         roleRequest: {
           roleListName: [values.role],

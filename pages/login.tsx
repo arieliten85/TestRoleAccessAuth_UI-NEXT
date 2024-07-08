@@ -1,5 +1,5 @@
 import { Formik, Form, Field, FormikHelpers, ErrorMessage } from "formik";
-import styles from "../styles/Register.module.css";
+import styles from "../styles/FormSession.module.css";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { validationSchemaLogin } from "@/validation/schemas";

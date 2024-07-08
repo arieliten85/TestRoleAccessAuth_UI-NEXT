@@ -6,13 +6,14 @@
 }
 
 .infoText strong {
-  color: #f29f05;
+  color: #7405f2;
 }
 
 .container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  margin-top: 100px;
   height: 100vh;
 }
 .SpinnerContainer {
@@ -32,12 +33,13 @@
   color: #f29f05;
   margin: 0 auto;
   padding-bottom: 10px;
+  text-transform: uppercase;
 }
 .label {
   margin-bottom: 5px;
   font-weight: bold;
 
-  color: black;
+  color: #f29f05;
 }
 
 .input {
