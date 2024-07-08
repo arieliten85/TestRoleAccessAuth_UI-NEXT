@@ -1,4 +1,3 @@
-"use client";
 import { Formik, Form, Field, FormikHelpers, ErrorMessage } from "formik";
 import styles from "../styles/Register.module.css";
 import { useRouter } from "next/router";
@@ -8,7 +7,7 @@ import { loginUser } from "./api/userAuth";
 import { useUserAuthContext } from "@/context/userAuthContext";
 import { setAuthToken } from "@/utils/tokenService";
 import { useState } from "react";
-import { ClipLoader } from "react-spinners";
+import { Spinner } from "@/components/spinner/Spinner";
 
 interface FormValues {
   username: string;
@@ -127,20 +126,6 @@ export default function Login() {
           </Form>
         )}
       </Formik>
-    </div>
-  );
-}
-
-export function Spinner() {
-  return (
-    <div>
-      <ClipLoader
-        color={"#000000"}
-        size={20}
-        speedMultiplier={1}
-        aria-label="Loading Spinner"
-        data-testid="loader"
-      />
     </div>
   );
 }

@@ -1,14 +1,7 @@
 import { checkTokenExpiration, getTokenStorage } from "@/utils/tokenService";
-import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
-
-interface CustomAxiosInstance extends AxiosInstance {
-  (config: AxiosRequestConfig): Promise<any>;
-}
+import axios from "axios";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL_PROD;
-
-console.log(BASE_URL);
-
 const axiosInstance = axios.create({
   baseURL: BASE_URL,
   headers: {

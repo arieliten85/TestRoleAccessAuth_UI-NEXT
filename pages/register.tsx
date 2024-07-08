@@ -1,12 +1,11 @@
 import { Formik, Form, Field, FormikHelpers } from "formik";
-
 import styles from "../styles/Register.module.css";
 import { validationSchemaRegister } from "@/validation/schemas";
 import { registerUser } from "./api/userAuth";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useState } from "react";
-import { ClipLoader } from "react-spinners";
+import { Spinner } from "@/components/spinner/Spinner";
 
 interface FormValues {
   username: string;
@@ -68,7 +67,7 @@ export default function Register() {
         {({ errors, touched, status }) => (
           <Form className={styles.form}>
             <h2 className={styles.title}>Register</h2>
-            {/* Username field */}
+
             <label htmlFor="username" className={styles.label}>
               Username
             </label>
@@ -83,7 +82,6 @@ export default function Register() {
               <p className={styles.error}>{errors.username}</p>
             ) : null}
 
-            {/* Password field */}
             <label htmlFor="password" className={styles.label}>
               Password
             </label>
@@ -98,7 +96,6 @@ export default function Register() {
               <p className={styles.error}>{errors.password}</p>
             ) : null}
 
-            {/* Role select field */}
             <label htmlFor="role" className={styles.label}>
               Role
             </label>
@@ -112,7 +109,6 @@ export default function Register() {
               <p className={styles.error}>{errors.role}</p>
             ) : null}
 
-            {/* Link to login */}
             <p className={styles.infoText}>
               Are you already registered?{" "}
               <Link href="/login">
@@ -120,12 +116,10 @@ export default function Register() {
               </Link>{" "}
             </p>
 
-            {/* Register button */}
             <button type="submit" className={styles.button}>
               {!loading ? "Register" : <Spinner />}
             </button>
 
-            {/* Display error message if any */}
             {status && (
               <div
                 style={{
@@ -140,20 +134,6 @@ export default function Register() {
           </Form>
         )}
       </Formik>
-    </div>
-  );
-}
-
-export function Spinner() {
-  return (
-    <div>
-      <ClipLoader
-        color={"#000000"}
-        size={20}
-        speedMultiplier={1}
-        aria-label="Loading Spinner"
-        data-testid="loader"
-      />
     </div>
   );
 }
