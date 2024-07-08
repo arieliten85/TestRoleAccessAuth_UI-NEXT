@@ -56,7 +56,7 @@ export default function Home() {
     <div className={styles.container}>
       <div className={styles.main}>
         <div className={styles.formUser}>
-          <h2>Datos del usuario ingresado</h2>
+          <h2>User Information</h2>
           <p>Name</p>
           <p className={styles.inputText}>{user.name}</p>
           <p>Role</p>
