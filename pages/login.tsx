@@ -109,7 +109,7 @@ export default function Login() {
             </p>
 
             <button type="submit" className={styles.button}>
-              {!loading ? "Login" : <Spinner />}
+              {!loading ? "Enter" : <Spinner />}
             </button>
 
             {status && (
