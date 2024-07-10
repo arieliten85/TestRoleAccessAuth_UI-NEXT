@@ -12,10 +12,10 @@ const axiosInstance = axios.create({
 // EN CADA CONSULTA CHEQUEA QUE TENGA EL TOKEN Y NO HAYA EXPIRADO
 axiosInstance.interceptors.request.use(
   (config) => {
-    checkTokenExpiration();
     const token = getTokenStorage();
 
     if (token && config.url && !config.url.startsWith(`${BASE_URL}/auth/`)) {
+      checkTokenExpiration();
       config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
